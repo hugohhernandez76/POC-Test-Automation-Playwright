@@ -21,7 +21,6 @@
     "eslint-plugin-playwright": "^1.6.0"
   },
   "dependencies": {
-    "axios": "^1.6.8",
     "faker": "^5.5.3"
   }
 }
