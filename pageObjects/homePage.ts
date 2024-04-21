@@ -1,46 +1,29 @@
-import { Page, expect } from "@playwright/test";
+import { Page, Locator } from '@playwright/test';
 
-export class HomePage {
-  private page: Page;
+class HomePage {
+  page: Page;
+  getStartedBtn: Locator;
+  headingText: Locator;
+  homeLink: Locator;
+  searchIcon: Locator;
+  navLinks: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.getStartedBtn = page.locator('#get-started')
+    this.headingText = page.locator('text=Think different. Make different.')
+    this.homeLink = page.locator('#primary-menu:has-text("Home")')
+    this.searchIcon = page.locator('//*[@id="primary-menu"]//*[@class="tg-icon tg-icon-search"]')
+    this.navLinks = page.locator('#zak-primary-menu')
   }
 
   async navigate() {
-    await this.page.goto("https://www.usemotion.com/");
-    // Get the status code of the page
-    const status = await this.page.evaluate(async () => {
-      const response = await fetch(window.location.href);
-      return response.status;
-    });
-    console.log("Page status code:", status);
-
-    // Assert the status code after getting it
-    expect(status).toBe(200);
+    // open url
+    await this.page.goto('/');
+    
   }
-
-  async getTitle() {
-    return this.page.title();
-  }
-  async clickFreeTrial() {
-    // Click on the "Try Motion for free" button using XPath expression
-    await this.page.click('//a[contains(text(), "Try Motion for free")]');
-
-    // Wait for navigation to a URL matching a regular expression
-    await this.page.waitForURL(/\/checkout/);
-
-    // Find the <p> element on the new page
-    const paragraph = await this.page.$('p');
-
-    // Get the text content of the <p> element
-    const textContent = await paragraph?.textContent();
-    console.log('Text content:', textContent); 
-
-    // Assert that the text content contains the expected text
-    expect(textContent).toContain('👋 Try Motion for free!');
+  getNavLinks () {
+    return console.log(this.navLinks.allTextContents());
   }
 }
-
-
-
+export default HomePage;

@@ -1,0 +1,1 @@
+[{"uid":"26a43c2d0812589","name":"Open Home Page and Verify loggin","time":{"start":1713707164119,"stop":1713707164318,"duration":199},"status":"failed","severity":"normal"},{"uid":"845767f1fe9004dd","name":"Verify login and register is visible","time":{"start":1713707199751,"stop":1713707202703,"duration":2952},"status":"passed","severity":"normal"}]

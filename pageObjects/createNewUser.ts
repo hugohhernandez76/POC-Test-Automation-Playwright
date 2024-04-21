@@ -26,13 +26,13 @@ export class NewUser {
     await continueButton?.click();
     
     // // Wait for navigation to a URL matching a regular expression
-    await this.page.waitForURL(/https:\/\/app\.usemotion\.com\/checkout/);
+    await this.page.waitForURL(/.*checkout/);
     // wait for span to be visible
-    await this.page.waitForSelector('//span[contains(@class, "text-semantic-neutral-text-subtle") and contains(@class, "text-xs") and contains(@class, "mb-3")]');
-
+    //await this.page.waitForSelector('//span[contains(@class, "text-semantic-neutral-text-subtle") and contains(@class, "text-xs") and contains(@class, "mb-3")]');
+    const isTextVisible = await this.page.waitForSelector('text= Create your password for ')
     // Verificar que el span esté visible
-    const isSpanVisible = await this.page.isVisible('span.text-semantic-neutral-text-subtle.text-xs.mb-1.5');
-    expect(isSpanVisible).toBeTruthy();
+    
+    expect(isTextVisible).toBeTruthy();
   }
   
 
